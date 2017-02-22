@@ -7,5 +7,5 @@ Including<br>
 4.an asynchronous event bus <br> 
 5.thread-safe memory pool <br> 
  
- For example, wait a little while to update。<br>
+ All examples, not fully tested, if there is an error please understand。<br>
 If you have any questions please contact me 124042540@qq.com。<br>
