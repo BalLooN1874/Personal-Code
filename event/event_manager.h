@@ -45,9 +45,12 @@ public:
 	}
 
 	virtual ~EventManager();
+	//注册事件
 	bool register_event( const int32_t nEventIndex ,  Event* pInstance );
+	//移除事件
 	bool unregister_event( const int32_t nEventIndex , const Event* pInstance );
-
+	
+	//推送事件通知
 	template<typename T>
 	bool push_notify(  int32_t nEventIndex ,  T& data )
 	{

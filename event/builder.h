@@ -13,7 +13,9 @@ public:
 	virtual ~Builder();
 	
 public:
+	//构造所有业务类
 	void construct_event();
+	//析构所有业务类
 	void destruct_event();
 
 private:
