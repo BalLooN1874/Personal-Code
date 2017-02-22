@@ -1,0 +1,1 @@
+使用时请将libglog.dll复制到和.exe同一路径下
