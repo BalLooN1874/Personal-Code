@@ -95,7 +95,7 @@ class mem_pool
         {
             _offset = g_blockSize % sizeof ( void* ) == 0 ?  g_blockSize :  g_blockSize + ( sizeof ( void* ) - 1 );
             _numFreeBlocks = g_MaxNumberOfBlock; // memory pool总的容量
-            // __alignof(T)是为了检测T对齐的粒度, 因为用户可以指定对齐的粒度,
+            // __alignof(T)是为了检测T对齐的粒度
             _blockSize = __alignof ( char );
             size_t diff = _blockSize % __alignof ( char );
 			if ( diff != 0 )
@@ -115,17 +115,14 @@ class mem_pool
 
         void* aligned_malloc ( size_t size, size_t alignment )
         {
-            // 分配足够的内存, 这里的算法很经典, 早期的STL中使用的就是这个算法
+            // 分配足够的内存
             const size_t pointer_size  =  sizeof ( void* );
-            //这个是st_FreeBlock内存对齐需要的内存大小
+            //st_FreeBlock内存对齐需要的内存大小
             const size_t requested_size = size + alignment - 1 + pointer_size;
             // 分配的实际大小
             void* raw = malloc ( requested_size );
-            // 这里实Pool真正为对象实例分配的内存地址
             uintptr_t start = ( uintptr_t ) raw + pointer_size;
-            //采用STL里面的算法
             void* aligned = ( void* ) ( ( start + alignment - 1 ) & ~ ( alignment - 1 ) );
-            //这里维护一个只想malloc()真正分配的内存
             * ( void** ) ( ( uintptr_t ) aligned - pointer_size ) = raw;
             // 返回实例对象真正的地址
             return aligned;
